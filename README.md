@@ -42,8 +42,8 @@ curl -Lsf https://astral.sh/uv/install.sh | sh
 ### 2. Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
-cd YOUR_REPO_NAME
+git clone https://github.com/Adam1102003/Titanic---Machine-Learning-from-Disaster.git
+cd Titanic---Machine-Learning-from-Disaster
 ```
 
 ### 3. Install dependencies
