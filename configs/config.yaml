@@ -1,0 +1,6 @@
+defaults:
+  - data: titanic
+  - training: default
+  - _self_
+
+name: titanic-pipeline

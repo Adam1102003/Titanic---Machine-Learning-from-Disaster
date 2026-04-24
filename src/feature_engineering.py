@@ -31,8 +31,19 @@ def engineer_features(df: pd.DataFrame) -> pd.DataFrame:
     if "Name" in df.columns:
         df["Title"] = df["Name"].str.extract(r" ([A-Za-z]+)\.", expand=False)
         df["Title"] = df["Title"].replace(
-            ["Lady", "Countess", "Capt", "Col", "Don",
-             "Dr", "Major", "Rev", "Sir", "Jonkheer", "Dona"],
+            [
+                "Lady",
+                "Countess",
+                "Capt",
+                "Col",
+                "Don",
+                "Dr",
+                "Major",
+                "Rev",
+                "Sir",
+                "Jonkheer",
+                "Dona",
+            ],
             "Rare",
         )
         df["Title"] = df["Title"].replace({"Mlle": "Miss", "Ms": "Miss", "Mme": "Mrs"})

@@ -1,0 +1,7 @@
+models:
+  - random_forest
+  - logistic_regression
+  - gradient_boosting
+
+cv_folds: 5
+models_output_dir: models/

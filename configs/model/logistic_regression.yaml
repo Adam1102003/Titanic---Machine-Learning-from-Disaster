@@ -1,0 +1,11 @@
+C:
+  - 0.01
+  - 0.1
+  - 1
+  - 10
+  - 100
+solver:
+  - lbfgs
+  - liblinear
+penalty:
+  - l2
