@@ -1,0 +1,5 @@
+{
+  "random_forest": 0.8268,
+  "logistic_regression": 0.8101,
+  "gradient_boosting": 0.8268
+}

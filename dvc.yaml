@@ -1,0 +1,46 @@
+stages:
+
+  load_data:
+    cmd: python -m src.stages.load_data
+    deps:
+      - src/stages/load_data.py
+      - data/raw/train.csv
+      - data/raw/test.csv
+    outs:
+      - data/processed/train_raw.csv
+
+  clean:
+    cmd: python -m src.stages.clean
+    deps:
+      - src/stages/clean.py
+      - src/cleaning.py
+      - data/processed/train_raw.csv
+    outs:
+      - data/processed/train_cleaned.csv
+
+  feature_engineering:
+    cmd: python -m src.stages.feature_engineering
+    deps:
+      - src/stages/feature_engineering.py
+      - src/feature_engineering.py
+      - data/processed/train_cleaned.csv
+    outs:
+      - data/processed/train_featured.csv
+
+  train:
+    cmd: python -m src.stages.train
+    deps:
+      - src/stages/train.py
+      - src/preprocess.py
+      - src/tuning.py
+      - src/evaluate.py
+      - data/processed/train_featured.csv
+      - configs/training/default.yaml
+      - configs/model/random_forest.yaml
+      - configs/model/logistic_regression.yaml
+      - configs/model/gradient_boosting.yaml
+    outs:
+      - models/
+    metrics:
+      - metrics/scores.json:
+          cache: false

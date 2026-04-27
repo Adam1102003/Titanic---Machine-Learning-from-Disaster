@@ -1,0 +1,111 @@
+schema: '2.0'
+stages:
+  load_data:
+    cmd: python -m src.stages.load_data
+    deps:
+    - path: data/raw/test.csv
+      hash: md5
+      md5: 7533b82eae4b582610cbd68aa636b017
+      size: 28629
+    - path: data/raw/train.csv
+      hash: md5
+      md5: 2309cc5f04782ed9bb6016d9f4e381cf
+      size: 61194
+    - path: src/stages/load_data.py
+      hash: md5
+      md5: 7f432a7d24951d99e0b310e8c204f5d5
+      size: 492
+    outs:
+    - path: data/processed/train_raw.csv
+      hash: md5
+      md5: 2e0e4b0aeeb40b47ee0915eba73534bc
+      size: 62894
+  clean:
+    cmd: python -m src.stages.clean
+    deps:
+    - path: data/processed/train_raw.csv
+      hash: md5
+      md5: 2e0e4b0aeeb40b47ee0915eba73534bc
+      size: 62894
+    - path: src/cleaning.py
+      hash: md5
+      md5: 3fccc70a145b8e52db4d46614dbe5e90
+      size: 709
+    - path: src/stages/clean.py
+      hash: md5
+      md5: 199e487bd183264e7f300d2e2ceb6145
+      size: 369
+    outs:
+    - path: data/processed/train_cleaned.csv
+      hash: md5
+      md5: 4c921365b6c1002026a0a087efa339a3
+      size: 53221
+  feature_engineering:
+    cmd: python -m src.stages.feature_engineering
+    deps:
+    - path: data/processed/train_cleaned.csv
+      hash: md5
+      md5: 4c921365b6c1002026a0a087efa339a3
+      size: 53221
+    - path: src/feature_engineering.py
+      hash: md5
+      md5: 35d5f6b032b8ea44f3dc7a2f04fb1722
+      size: 1846
+    - path: src/stages/feature_engineering.py
+      hash: md5
+      md5: 03fe66436d657e47040e503369ddf6d7
+      size: 407
+    outs:
+    - path: data/processed/train_featured.csv
+      hash: md5
+      md5: 5008ebd872b1f6bd38464c12a693a1c6
+      size: 98746
+  train:
+    cmd: python -m src.stages.train
+    deps:
+    - path: configs/model/gradient_boosting.yaml
+      hash: md5
+      md5: 458356247d439979542bd22967b94636
+      size: 138
+    - path: configs/model/logistic_regression.yaml
+      hash: md5
+      md5: 3a53f078ecb522edd8cc75dabb6ab12b
+      size: 98
+    - path: configs/model/random_forest.yaml
+      hash: md5
+      md5: 3d8df758c83320290caf5c54fad87ae8
+      size: 155
+    - path: configs/training/default.yaml
+      hash: md5
+      md5: 76be2edc8a49f1502eaeb824666821e6
+      size: 117
+    - path: data/processed/train_featured.csv
+      hash: md5
+      md5: 5008ebd872b1f6bd38464c12a693a1c6
+      size: 98746
+    - path: src/evaluate.py
+      hash: md5
+      md5: 212bd6467c7a1f9cc530f780a3538ee5
+      size: 436
+    - path: src/preprocess.py
+      hash: md5
+      md5: 141a91a79e3b65fb753cdb6261259955
+      size: 2097
+    - path: src/stages/train.py
+      hash: md5
+      md5: 99e4387c76a806f2dd632a541ef2f062
+      size: 1666
+    - path: src/tuning.py
+      hash: md5
+      md5: 139a398758a2be6335d8029fb37fe690
+      size: 1924
+    outs:
+    - path: metrics/scores.json
+      hash: md5
+      md5: c0c1c9f29c8558adc59646098c56f291
+      size: 97
+    - path: models/
+      hash: md5
+      md5: 900aee2587a94fa950197df7f59abc57.dir
+      size: 1619058
+      nfiles: 3
