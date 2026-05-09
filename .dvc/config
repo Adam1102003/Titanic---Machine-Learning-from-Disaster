@@ -2,3 +2,6 @@
     remote = origin
 ['remote "origin"']
     url = https://dagshub.com/Adam1102003/Titanic---Machine-Learning-from-Disaster.dvc
+    auth = basic
+    user = Adam1102003
+    password = eceab012747906ded8dcc0f7d6ace176998a5e50
