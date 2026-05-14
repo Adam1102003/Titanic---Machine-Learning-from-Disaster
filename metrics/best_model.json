@@ -1,0 +1,7 @@
+{
+  "best_model": "random_forest",
+  "best_model_path": "models\\random_forest.pkl",
+  "accuracy": 0.8268,
+  "run_id": "dabdfb0f68994b3e8cdaee832264c060",
+  "stage": "Production"
+}

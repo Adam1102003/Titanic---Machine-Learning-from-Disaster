@@ -1,0 +1,7 @@
+name: titanic-machine-learning-from-disaster
+
+entry_points:
+  main:
+    command: "uv run python pipeline.py"
+  train:
+    command: "uv run python src/stages/train.py"

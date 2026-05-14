@@ -50,7 +50,7 @@ def main() -> None:
             cfg_training.models_output_dir, f"{model_name}.pkl"
         )
 
-        with mlflow.start_run(run_name=model_name):
+        with mlflow.start_run(run_name=model_name):  # only ONE start_run
 
             # Log parameters
             mlflow.log_param("model_name", model_name)
@@ -78,8 +78,8 @@ def main() -> None:
             # Log metrics
             mlflow.log_metric("accuracy", acc)
 
-            # Log model to MLflow registry
-            mlflow.sklearn.log_model(
+            # Log model artifact
+            model_info = mlflow.sklearn.log_model(
                 sk_model=best_pipeline,
                 artifact_path="model",
             )
@@ -87,8 +87,21 @@ def main() -> None:
             # Log the .pkl as artifact
             mlflow.log_artifact(output_path)
 
+            # Register model — gracefully skip if DagsHub doesn't support registry
+            try:
+                mlflow.register_model(
+                    model_uri=model_info.model_uri,
+                    name=f"titanic-{model_name}",
+                )
+                print(f"[✓] Model registered: titanic-{model_name}")
+            except Exception as e:
+                print(f"[!] Model registry not supported — logged as artifact only.")
+                print(f"    Model URI : {model_info.model_uri}")
+                print(f"    Run ID    : {mlflow.active_run().info.run_id}")
+
             print(f"[✓] MLflow run logged for '{model_name}'")
 
+    # outside the for loop — runs after all models are done
     with open("metrics/scores.json", "w") as f:
         json.dump(scores, f, indent=2)
 

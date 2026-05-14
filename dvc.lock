@@ -93,8 +93,8 @@ stages:
       size: 2097
     - path: src/stages/train.py
       hash: md5
-      md5: f9bb192914048c8b863e9e9d5166bff6
-      size: 2973
+      md5: 46cd5ee359adb0fb237f724258ac92ef
+      size: 3670
     - path: src/tuning.py
       hash: md5
       md5: 139a398758a2be6335d8029fb37fe690
@@ -109,3 +109,30 @@ stages:
       md5: 900aee2587a94fa950197df7f59abc57.dir
       size: 1619058
       nfiles: 3
+  promote:
+    cmd: python promote_model.py
+    deps:
+    - path: metrics/scores.json
+      hash: md5
+      md5: c0c1c9f29c8558adc59646098c56f291
+      size: 97
+    - path: promote_model.py
+      hash: md5
+      md5: bc43687b3ebb2c3b1f2cf3666406d77f
+      size: 2963
+    outs:
+    - path: metrics/best_model.json
+      hash: md5
+      md5: 46d8dd1fffab6727602a3bbdf70c2862
+      size: 186
+  predict:
+    cmd: python predict.py
+    deps:
+    - path: metrics/best_model.json
+      hash: md5
+      md5: 46d8dd1fffab6727602a3bbdf70c2862
+      size: 186
+    - path: predict.py
+      hash: md5
+      md5: 1f86090a7d9f8cce6e69bc3735a5d858
+      size: 2707

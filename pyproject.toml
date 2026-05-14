@@ -3,7 +3,7 @@ name = "titanic-machine-learning-from-disaster"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.11"
 dependencies = [
     "black>=26.3.1",
     "dagshub>=0.7.0",
@@ -22,7 +22,7 @@ dependencies = [
     "ruff>=0.15.11",
     "scikit-learn>=1.8.0",
     "seaborn>=0.13.2",
-    "setuptools>=82.0.1",
+    "setuptools>=65.5.0,<82.0.0",
     "xgboost>=3.2.0",
 ]
 
