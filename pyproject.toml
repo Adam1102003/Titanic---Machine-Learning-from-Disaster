@@ -7,6 +7,7 @@ requires-python = ">=3.11"
 dependencies = [
     "black>=26.3.1",
     "dagshub>=0.7.0",
+    "duckdb>=1.5.2",
     "dvc[http]>=3.67.1",
     "dvclive>=3.49.0",
     "fastapi>=0.136.1",
@@ -18,6 +19,7 @@ dependencies = [
     "numpy>=2.4.4",
     "omegaconf>=2.3.0",
     "pandas>=3.0.2",
+    "prefect>=3.7.0",
     "protobuf>=3.20.0,<4.0.0",
     "pydantic>=2.13.3",
     "python-dotenv>=1.2.2",
