@@ -86,7 +86,7 @@ def load_model():
     model_path = info["best_model_path"]
     run_id     = info["run_id"]
 
-    logger.info(f"📦 Loading model   : {model_name}")
+    logger.info(f"Loading model   : {model_name}")
     logger.info(f"   Run ID          : {run_id}")
     logger.info(f"   Accuracy        : {info['accuracy']}")
 
